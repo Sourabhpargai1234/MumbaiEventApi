@@ -1,14 +1,16 @@
 const express = require('express');
-const path = require('path');
 const cors = require('cors');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+
+// Enable CORS for all origins
 app.use(cors({
-  origin: '*',
-  methods: ['GET', 'POST'],
+    origin: '*',
+    methods: ['GET', 'POST'],
 }));
 
+// Sample Data
 const servedJson = [
     {
         "event_id": "65029c5bdf6918136df27e51",
@@ -20,12 +22,7 @@ const servedJson = [
         "is_exhibitor": false,
         "is_lunch": true,
         "is_awards": false,
-        "participant_type": [
-            "EXHIBITOR",
-            "SPEAKER",
-            "AWARD_PRESENTATION",
-            "JURY"
-        ],
+        "participant_type": ["EXHIBITOR", "SPEAKER", "AWARD_PRESENTATION", "JURY"],
         "status": "ACTIVE",
         "contact": "9805798997",
         "name": "Pranav Bhasin",
@@ -94,21 +91,26 @@ const servedJson = [
         "state": "",
         "image": "http://91.205.173.97:8601/public/user_images/1715077660699_image_picker_5E15CE0F-C91C-4336-B803-52E831CDFDC9-4947-000003F7BA3B0932.jpg"
     }
-]
+];
 
+// Endpoint to return user by reg_id
 app.get('/virtubox.io/getData', (req, res) => {
     const { reg_id } = req.query;
+
     if (!reg_id) {
         return res.status(400).json({ error: 'reg_id is required' });
     }
+
     const user = servedJson.find(u => u.reg_id === reg_id);
+
     if (!user) {
         return res.status(404).json({ error: 'User not found' });
     }
+
     res.json(user);
 });
 
-
+// Start server
 app.listen(PORT, () => {
     console.log(`🚀 Server is running at http://localhost:${PORT}`);
 });
