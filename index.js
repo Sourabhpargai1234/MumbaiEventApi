@@ -67,7 +67,7 @@ const servedJson = [
         "event_id": "65029c5bdf6918136df27e53",
         "user_id": "66260c20eb130d522e604ed5",
         "qr_code": "http://91.205.173.97:8601/public/qr_images/66260c20eb130d522e604ed3.png",
-        "reg_id": "23123213",
+        "reg_id": "231232123",
         "role": "VISITOR",
         "meeting_availability": true,
         "is_exhibitor": false,
